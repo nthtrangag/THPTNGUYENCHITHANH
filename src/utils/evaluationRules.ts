@@ -206,7 +206,7 @@ export function isDepartmentLeaderOrDeputy(user?: {
   title?: string;
 }): boolean {
   if (!user) return false;
-  if (user.roleId === 'TO_TRUONG' || user.isDepartmentHead) return true;
+  if (user.roleId === 'TO_TRUONG' || user.roleId === 'TO_PHO' || user.isDepartmentHead) return true;
   const title = (user.title || '').toLowerCase();
   return (
     title.includes('tổ trưởng') ||
@@ -323,7 +323,7 @@ export const STATUS_DEFINITIONS: Record<EvaluationStatus, { label: string; step:
     description: 'Giáo viên đã nộp bản tự đánh giá, đang chờ Tổ trưởng chấm điểm tổ',
   },
   GROUP_REVIEWED: {
-    label: 'Tổ trưởng đã duyệt (Chờ BGH phê duyệt)',
+    label: 'Chờ BGH duyệt',
     step: 3,
     color: 'bg-indigo-100 text-indigo-800 border-indigo-300',
     description: 'Tổ chuyên môn đã cho điểm group_score, chờ Ban Giám hiệu quyết định',
